@@ -65,10 +65,13 @@ export default function SignIn({ setName }) {
           />
           <Button
             disabled={disabled} // ボタンの初期値をdisabledにする
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            onClick={() => {
+              setName({string}) // ボタンを押したらnameを更新する
+            }}
           >
             はじめる
           </Button>
