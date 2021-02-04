@@ -19,7 +19,7 @@ function Copyright(props) {
   );
 }
 
-export default function SignIn() {
+export default function SignIn({ setName }) {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
