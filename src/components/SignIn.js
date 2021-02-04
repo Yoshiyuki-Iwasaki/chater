@@ -62,6 +62,13 @@ export default function SignIn({ setName }) {
             name="name"
             autoFocus
             onChange={(e) => setString(e.target.value)}
+            onKeyDown={(e) => {
+              console.log({ key: e.key })
+              if (e.key === 'Enter') {
+                setName(e.target.value) // エンターを押したらnameを更新する
+                e.preventDefault();
+              }
+            }}
           />
           <Button
             disabled={disabled} // ボタンの初期値をdisabledにする
