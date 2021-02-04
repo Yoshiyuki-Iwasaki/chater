@@ -1,4 +1,4 @@
-# React Starter Kit in JavaScript
+# React Starter Kit in TypeScript
 
 ## Node のインストール方法
 
@@ -32,4 +32,3 @@
     $ docker-compose build
     $ docker-compose run --rm app yarn install
     $ docker-compose up
-# reactTemp
