@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -20,6 +20,17 @@ function Copyright(props) {
 }
 
 export default function SignIn({ setName }) {
+  const [disabled, setDisabled] = useState(true);
+  const [string, setString] = useState('');
+  console.log({ disabled, string });
+
+  // stringが変化したタイミングで発火,文字が入力された時のみdisabledを削除する
+  useEffect(
+    () => {
+      const disabled = string === '';
+      setDisabled(disabled);
+    }, [string]);
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -50,8 +61,15 @@ export default function SignIn({ setName }) {
             label="ニックネーム"
             name="name"
             autoFocus
+            onChange={(e) => setString(e.target.value)}
           />
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+          <Button
+            disabled={disabled} // ボタンの初期値をdisabledにする
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
             はじめる
           </Button>
         </Box>
