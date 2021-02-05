@@ -22,7 +22,8 @@ function Copyright(props) {
 export default function SignIn({ setName }) {
   const [disabled, setDisabled] = useState(true);
   const [string, setString] = useState('');
-  console.log({ disabled, string });
+  const [isComposed, setIsComposed] = useState('false');
+  // console.log({ disabled, string, isComposed });
 
   // stringが変化したタイミングで発火,文字が入力された時のみdisabledを削除する
   useEffect(
@@ -63,12 +64,16 @@ export default function SignIn({ setName }) {
             autoFocus
             onChange={(e) => setString(e.target.value)}
             onKeyDown={(e) => {
-              console.log({ key: e.key })
+              if (isComposed) return; //isComposedがtrueの時にアーリーリターン
+
               if (e.key === 'Enter') {
+                // console.log({ key: e.key })
                 setName(e.target.value) // エンターを押したらnameを更新する
                 e.preventDefault();
               }
             }}
+            onCompositionStart={() => setIsComposed(true)}
+            onCompositionEnd = {() => setIsComposed(false)}
           />
           <Button
             disabled={disabled} // ボタンの初期値をdisabledにする
