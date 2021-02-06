@@ -30,3 +30,4 @@ yarn-error.log*
 firebase.json
 .firebaserc
 .firebase
+.firebase-config.js
