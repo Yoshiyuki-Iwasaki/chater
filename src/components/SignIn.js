@@ -27,7 +27,6 @@ export default function SignIn({ setName }) {
   const [disabled, setDisabled] = useState(true);
   const [string, setString] = useState("");
   const [isComposed, setIsComposed] = useState(false);
-  // console.log({ disabled, string, isComposed });
 
   // stringが変化したタイミングで発火,文字が入力された時のみdisabledを削除する
   useEffect(() => {
@@ -70,7 +69,6 @@ export default function SignIn({ setName }) {
               if (isComposed) return; //isComposedがtrueの時にアーリーリターン
 
               if (e.key === "Enter") {
-                // console.log({ key: e.key })
                 setName(e.target.value); // エンターを押したらnameを更新する
                 e.preventDefault();
               }
