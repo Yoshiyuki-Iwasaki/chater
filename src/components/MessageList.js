@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { messageRef } from "../firebase";
+import { List } from "@material-ui/core";
+import MessageItem from "./MessageItem";
 
 const useStyles = makeStyles({
   root: {
     gridRow: 1,
+    overflow: "auto",
   },
 });
 
@@ -24,11 +27,20 @@ const MessageList = () => {
           const [key, nameText] = entry;
           return { key, ...nameText };
         });
-        console.log(newMessages);
         setMessages(newMessages);
       });
   }, []);
-  return <div className={classes.root}>MessageList</div>;
+  return (
+    <List className={classes.root}>
+      {messages.map(({ key, name, text }) => {
+        return (
+          <MessageItem key={key} name={name} text={text}>
+            message
+          </MessageItem>
+        );
+      })}
+    </List>
+  );
 };
 
 export default MessageList;
