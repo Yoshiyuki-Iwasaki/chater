@@ -10,6 +10,7 @@
 
 # production
 /public
+/build
 
 # misc
 .DS_Store
@@ -26,3 +27,6 @@ yarn-error.log*
 
 # firebase
 src/firebase*
+firebase.json
+.firebaserc
+.firebase
