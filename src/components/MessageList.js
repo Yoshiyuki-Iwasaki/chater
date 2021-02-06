@@ -18,7 +18,7 @@ const MessageList = () => {
   useEffect(() => {
     messageRef
       .orderByKey()
-      .limitToLast(5)
+      // .limitToLast(5)
       .on("value", snapshot => {
         const messages = snapshot.val();
         if (messages === null) return;
@@ -30,11 +30,21 @@ const MessageList = () => {
         setMessages(newMessages);
       });
   }, []);
+
+  const message_length = messages.length;
+
   return (
     <List className={classes.root}>
-      {messages.map(({ key, name, text }) => {
+      {messages.map(({ key, name, text }, index) => {
+        const isLastItem = message_length === index + 1;
+
         return (
-          <MessageItem key={key} name={name} text={text}>
+          <MessageItem
+            key={key}
+            name={name}
+            text={text}
+            isLastItem={isLastItem}
+          >
             message
           </MessageItem>
         );
