@@ -10,16 +10,15 @@ import {
 import { gravatarPath } from "../gravatar";
 
 const useStyles = makeStyles(() => ({
-  root: {
-    width: "100%",
-    maxWidth: "36ch",
+  list: {
+    justifyContent: "flex-end",
   },
-  inline: {
-    display: "inline",
+  item: {
+    flex: "none",
   },
 }));
 
-const MessageItem = ({ name, text, isLastItem }) => {
+const MessageItem = ({ label, name, text, isLastItem }) => {
   const ref = useRef(null);
   const classes = useStyles();
   const avatarPath = gravatarPath(name);
@@ -33,25 +32,52 @@ const MessageItem = ({ name, text, isLastItem }) => {
     }
   }, [isLastItem]);
 
+  console.log(name);
+  console.log(label.label);
+
   return (
-    <ListItem divider={true} alignItems="flex-start" ref={ref}>
-      <ListItemAvatar>
-        <Avatar alt="Remy Sharp" src={avatarPath} />
-      </ListItemAvatar>
-      <ListItemText
-        primary={text}
-        secondary={
-          <Typography
-            component="span"
-            variant="body2"
-            className={classes.inline}
-            color="textPrimary"
-          >
-            {name}
-          </Typography>
-        }
-      />
-    </ListItem>
+    <>
+      {label.label === name ? (
+        <ListItem className={classes.list} divider={true} ref={ref}>
+          <ListItemAvatar>
+            <Avatar alt="Remy Sharp" src={avatarPath} />
+          </ListItemAvatar>
+          <ListItemText
+            primary={text}
+            className={classes.item}
+            secondary={
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
+                {name}
+              </Typography>
+            }
+          />
+        </ListItem>
+      ) : (
+        <ListItem divider={true} alignItems="flex-start" ref={ref}>
+          <ListItemAvatar>
+            <Avatar alt="Remy Sharp" src={avatarPath} />
+          </ListItemAvatar>
+          <ListItemText
+            primary={text}
+            secondary={
+              <Typography
+                component="span"
+                variant="body2"
+                className={classes.inline}
+                color="textPrimary"
+              >
+                {name}
+              </Typography>
+            }
+          />
+        </ListItem>
+      )}
+    </>
   );
 };
 

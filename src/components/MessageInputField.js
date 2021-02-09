@@ -11,6 +11,11 @@ const useStyles = makeStyles({
     gridRow: 2,
     margin: "26px",
   },
+  block: {
+    marginRight: "auto",
+    marginLeft: "auto",
+    textAlign: "center",
+  },
 });
 
 const MessageInputField = ({ name }) => {
@@ -23,7 +28,10 @@ const MessageInputField = ({ name }) => {
     <div className={classes.root}>
       <Grid container>
         <Grid item xs={1}>
-          <Avatar src={avatarPath} />
+          <div className={classes.block}>
+            <Avatar className={classes.block} src={avatarPath} />
+            <p>{name}</p>
+          </div>
         </Grid>
         <Grid item xs={10}>
           <MessageField

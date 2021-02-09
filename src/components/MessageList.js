@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-const MessageList = () => {
+const MessageList = label => {
   const [messages, setMessages] = useState([]);
   const classes = useStyles();
 
@@ -42,6 +42,7 @@ const MessageList = () => {
           <MessageItem
             key={key}
             name={name}
+            label={label}
             text={text}
             isLastItem={isLastItem}
           >
